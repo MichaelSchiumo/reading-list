@@ -1,4 +1,8 @@
 class Topic < ActiveRecord::Base
-  has_many :books, through: :users
-  has_many :articles, through: :users
+  has_many :users, through: :books
+  has_many :users, through: :articles
+  has_many :books
+  has_many :articles
+
+  validates :name, presence: true
 end

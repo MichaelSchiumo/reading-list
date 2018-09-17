@@ -1,0 +1,15 @@
+<h2>Edit Article Info</h2>
+  <form action="/articles/<%=@article.id %>" method="POST">
+    <label for="article_title">Title:</label><br>
+    <input id="title" type="text" name="article[title]" value=<%= @article.title %>><br>
+    <label for="article_author">Author:</label><br>
+    <input id="article_author" type="text" name="article[author]" value=<%= @article.author %>><br>
+    <label for="article_topic">Topic:</label><br>
+    <input id="article_topic" type="text" name="article[topic]" value=<%= @article.topic %>><br>
+    <label for="article_url">Link:</label><br>
+    <input id="article_url" type="text" name="article[url]" value=<%= @article.url %>><br>
+    <input type="submit" value="Edit Article Info">
+  </form>
+<br>
+<a class="button" href="/articles">Articles</a>
+<a class="button" href="/index">Back to My ReadingList</a>

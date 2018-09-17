@@ -1,0 +1,15 @@
+<h2>Edit Book Info</h2>
+  <form action="/books/<%=@book.id %>" method="POST">
+    <label for="book_title">Title:</label><br>
+    <input id="title" type="text" name="book[title]" value=<%= @book.title %>><br>
+    <label for="book_author">Author:</label><br>
+    <input id="book_author" type="text" name="book[author]" value=<%= @book.author %>><br>
+    <label for="book_topic">Topic:</label><br>
+    <input id="book_topic" type="text" name="book[topic]" value=<%= @book.topic %>><br>
+    <label for="book_url">Link:</label><br>
+    <input id="book_url" type="text" name="book[url]" value=<%= @book.url %>><br>
+    <input type="submit" value="Edit Book Info">
+  </form>
+<br>
+<a class="button" href="/books">Books</a>
+<a class="button" href="/index">Back to My ReadingList</a>

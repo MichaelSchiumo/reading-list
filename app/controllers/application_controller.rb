@@ -9,8 +9,8 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "reading-list password"
   end
 
-  get "/" do
-    erb :welcome
+  get '/' do
+    erb :"views/index"
   end
 
 end

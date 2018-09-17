@@ -5,7 +5,6 @@ class CreateArticles < ActiveRecord::Migration
       t.string :author
       t.string :topic
       t.string :url
-      t.text :notes
     end
   end
 end

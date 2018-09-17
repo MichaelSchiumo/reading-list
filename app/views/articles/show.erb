@@ -1,0 +1,12 @@
+<h1>Articles to Read:</h1>
+<% @user.articles.each do |article| %>
+  <ul>
+    <li><a href="/articles/<%=article.id%>"><%= article.title%></a></li>
+    <li><%= article.author %>
+     <li><%= article.topic %></li>
+    <li><%= article.url %></li>
+  </ul>
+<% end %>
+<br>
+<a class="button" href="/articles/<%= @article.id %>/edit">Edit Articles</a>
+<a class="button" href="/show">Back to My ReadingList</a>

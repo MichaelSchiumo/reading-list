@@ -1,15 +1,9 @@
 <h1>My ReadingList</h1>
 <p> Here is your ReadingList, <%= @user.username %>
-<h3>Books: </h3>
+<h3>Books to Read: </h3>
 <% @user.books.each do |book| %>
   <ul>
     <li><a href="/books/<%=book.id%>"><%= book.name %></a></li>
-  </ul>
-<% end %>
-<h3>Articles: </h3>
-<% @user.articles.each do |article| %>
-  <ul>
-    <li><a href="/articles/<%=article.id%>"><%= article.name %></a></li>
   </ul>
 <% end %>
 <h3>Browse by Topic: </h3>

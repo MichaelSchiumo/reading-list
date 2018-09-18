@@ -1,10 +1,7 @@
 class Book < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :topics
-
-  # validates :title, presence: true
-  # validates :author, presence: true
-  # validates :url, presence: true
+  has_many :user_books
+  has_many :users, through: :user_books
+  belongs_to :topic
 
   def slug
     self.title.split(/\W/).join("-").downcase

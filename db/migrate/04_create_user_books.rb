@@ -3,6 +3,7 @@ class CreateUserBooks < ActiveRecord::Migration
     create_table :user_books do |t|
       t.integer :user_id
       t.integer :book_id
+      t.string :review
     end
   end
 end

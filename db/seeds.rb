@@ -14,3 +14,9 @@ Book.create(title: "The Female Perspective" , author: "Audre Lorde", topic_id: 1
 Book.create(title: "Bunnies", author: "Beatrix Potter", topic_id: 3)
 Book.create(title: "Forensic Files", author: "Georgia Hardstark", topic_id: 4)
 Book.create(title: "Your Brain and Music", author: "A Musicologist", topic_id: 5)
+
+UserBook.create(comment: "Comment by Vicki - This Book is Rad", user_id: 1, book_id: 2)
+UserBook.create(comment: "Comment by Eric - My Favorite Murder Mystery", user_id: 4, book_id: 4)
+UserBook.create(comment: "Comment by Mags - This is such a musical book", user_id: 2, book_id: 5)
+UserBook.create(comment: "Comment by Diana - This Book is Rad", user_id: 3, book_id: 1)
+UserBook.create(comment: "Comment by Vicki - I love bunnies", user_id: 1, book_id: 3)

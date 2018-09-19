@@ -10,6 +10,10 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "secret_password"
   end
 
+  get "/" do
+    redirect '/users'
+  end
+
   helpers do
     def current_user
       @user = User.find_by(id: session[:user_id])

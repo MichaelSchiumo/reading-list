@@ -1,62 +1,55 @@
 class UsersController < ApplicationController 
+  
+  get '/signup' do
+    if logged_in?
+      redirect "users/#{@user.id}"
+    else
+      erb :'users/signup'
+    end
+  end
+
+  get '/login' do
+    if logged_in?
+      redirect "users/#{@user.id}"
+    else
+      erb :'users/login'
+    end
+  end
 
   get '/users/:id' do
-    if !logged_in?
-      redirect '/views/index'
-    end
-
-    @user = User.find(params[:id])
-    if !@user.nil? && @user == current_user
+    if logged_in?
+      @user = User.find_by(id: session[:user_id])
       erb :'users/show'
     else
-      redirect '/views/index'
-    end
-  end
-
-  get '/signup' do
-    if !session[:user_id]
-      erb :'users/new'
-    else
-      redirect to '/'
-    end
-  end
-
-  post '/signup' do 
-    if params[:username] == "" || params[:password] == ""
-      redirect to '/signup'
-    else
-      @user = User.create(:username => params[:username], :password => params[:password])
-      session[:user_id] = @user.id
-      redirect '/views/index'
-    end
-  end
-
-  get '/login' do 
-    @error_message = params[:error]
-    if !session[:user_id]
-      erb :'users/login'
-    else
-      redirect '/'
-    end
-  end
-
-  post '/login' do
-    user = User.find_by(:username => params[:username])
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
-      redirect "/"
-    else
-      redirect to '/signup'
+      redirect '/books'
     end
   end
 
   get '/logout' do
-    if session[:user_id] != nil
-      session.destroy
-      redirect to '/login'
+    logout
+    flash[:message] = "You are now logged out."
+    redirect '/books'
+  end
+
+  post '/signup' do
+    if !params["username"].empty? && !params["email"].empty? && !params["password"].empty?
+      @user = User.create(params)
+      session[:user_id] = @user.id
+      redirect "users/#{@user.id}"
+      flash[:message] = "You have successfully created a My ReadingList account."
     else
-      redirect to '/'
+      redirect '/signup'
     end
   end
-  
+
+  post '/login' do
+    @user = User.find_by(username: params["username"])
+
+    if @user && @user.authenticate(params["password"])
+      session[:user_id] = @user.id
+      redirect "users/#{@user.id}"
+    else
+      redirect '/login'
+    end
+  end
 end

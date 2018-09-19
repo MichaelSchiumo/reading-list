@@ -1,14 +1,16 @@
 <h1>My ReadingList</h1>
-<p> Here is your ReadingList, <%= @user.username %>
+<p> Here is your ReadingList, <%= @user.username %></p>
 <h3>Books to Read: </h3>
 <% @user.books.each do |book| %>
   <ul>
-    <li><a href="/books/<%=book.id%>"><%= book.name %></a></li>
+    <li><a href="/books/<%=book.id%>"><%= book.name %> - <%= book.author %></a></li>
   </ul>
 <% end %>
+<br>
 <h3>Browse by Topic: </h3>
 <% @user.topics.each do |topic| %>
   <ul>
     <li><a href="/topics/<%=topic.id%>"><%= topic.name %></a></li>
   </ul>
 <% end %>
+<a href="/logout">Log Out</a>

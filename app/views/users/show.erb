@@ -7,10 +7,4 @@
   </ul>
 <% end %>
 <br>
-<h3>Browse by Topic: </h3>
-<% @user.topics.each do |topic| %>
-  <ul>
-    <li><a href="/topics/<%=topic.id%>"><%= topic.name %></a></li>
-  </ul>
-<% end %>
 <a href="/logout">Log Out</a>

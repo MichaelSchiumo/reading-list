@@ -4,15 +4,6 @@
     <input id="title" type="text" name="book[title]" value=<%= @book.title %>><br>
     <label for="book_author">Author:</label><br>
     <input id="book_author" type="text" name="book[author]" value=<%= @book.author %>><br>
-    <label for="book_topic">Check Topic:</label><br>
-    <% Topic.all.each do |topic| %>
-    <input id="<%= topic.name %>" type="checkbox" name="topics[]" value="<%= topic.id %>">
-    <% end %>
-    <label for="create_new_topic">Topic not listed? Enter new topic here:</label><br>
-    <input id="create_new_topic" type="text" name="book[topic]"><br>
-
-    <!--How to turn their submission into Topic.new?-->
-    
     <input type="submit" value="Edit Book Info">
   </form>
 <br>

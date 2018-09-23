@@ -52,7 +52,7 @@ class BooksController < ApplicationController
   patch '/books/:id' do
     @user = User.find_by(id: session[:user_id])
     @book = Book.find_by(id: params["id"])
-    @book.update(title: params["title"], author: params["author"], topic_id: params["topic_id"])
+    @book.update(title: params["title"], author: params["author"])
 
     flash[:message] = "Book sucessfully updated."
     redirect "/users/#{@user.id}"
@@ -67,5 +67,3 @@ class BooksController < ApplicationController
     redirect "/users/#{@user.id}"
   end
 end
-
-#not sure about topic_id vs topic

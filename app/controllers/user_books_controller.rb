@@ -8,6 +8,10 @@ class UserBooksController < ApplicationController
       erb :'users/login'
      end
    end
+
+  #  post '/user_books' do
+
+  #  end
 end
 
 #user can add comments about books

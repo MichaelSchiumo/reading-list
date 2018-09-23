@@ -1,5 +1,10 @@
 class BooksController < ApplicationController
   
+  get '/books' do
+    @books = Book.all
+    erb :'/books/index'
+  end
+  
   get '/books/new' do
     if logged_in?
     erb :'books/new'
@@ -7,11 +12,6 @@ class BooksController < ApplicationController
       flash[:message] = "You must be logged in to add a new book to your ReadingList."
       redirect '/books'
     end
-  end
-
-  get '/books' do
-    @books = Book.all
-    erb :'/books/index'
   end
 
   get '/books/:id' do

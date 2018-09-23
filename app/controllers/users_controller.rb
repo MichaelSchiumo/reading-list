@@ -1,13 +1,5 @@
 class UsersController < ApplicationController 
   
-  get '/users' do
-    if logged_in?
-      redirect "users/#{@user.id}"
-    else
-      erb :'users/signup'
-    end
-  end
-  
   get '/signup' do
     if logged_in?
       redirect "/users/#{@user.id}"
@@ -20,8 +12,8 @@ class UsersController < ApplicationController
     if !params["username"].empty? && !params["email"].empty? && !params["password"].empty?
       @user = User.create(params)
       session[:user_id] = @user.id
-      redirect "/users/#{@user.id}"
       flash[:message] = "You have successfully created a My ReadingList account."
+      redirect "/users/#{@user.id}"
     else
       redirect '/signup'
     end
@@ -50,14 +42,13 @@ class UsersController < ApplicationController
       @user = User.find_by(id: session[:user_id])
       erb :'users/show'
     else
-      redirect '/books'
+      redirect '/'
     end
   end
 
   get '/logout' do
-    session.clear
+    logout
     flash[:message] = "You are now logged out."
     redirect '/'
   end
-
 end

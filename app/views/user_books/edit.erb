@@ -1,0 +1,8 @@
+<h1>Edit Comment for <%"user_book.book.title"%></h1>
+<form action="user_books/<%"user_book.id%>" method="POST">
+  <input type="hidden" name="_method" value="patch">
+  <%="user_book.book.title"%>
+  <%="user_book.book.author"%>
+  <input type="textarea" name="user_book[comment]" value="<%user_book.comment%>">
+  <input type="submit" value="Update Comment">
+</form>

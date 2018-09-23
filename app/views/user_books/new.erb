@@ -4,9 +4,9 @@
 <form action="/user_books" method="POST">
   <input type="hidden" name="user_book[user_id]" value="<%=current_user.id%>">
     <%@books.each do |book|%>
-    <p><input type="checkbox" name="check_list_items[book_ids][]" value="<%=book.id%>"><%=book.title%> - <%=book.author%></p>
+      <input type="checkbox" name="user_books[book_id][]" value="<%=book.id%>"><%=book.title%>
       <label for="book_id_<%=book.id%>_comment">Comment: </label>
-      <input id="book_id_<%=book.id%>_comment" type="textarea" name="check_list_items[book_id_<%=book.id%>][comment]">
+      <input id="book_id_<%=book.id%>_comment" type="textarea" name="user_books[book_id_<%=book.id%>][comment]">
       <input type="submit" value="Add Comment">
     <%end%>
 </form>

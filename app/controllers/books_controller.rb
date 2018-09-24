@@ -10,7 +10,7 @@ class BooksController < ApplicationController
     erb :'books/new'
     else
       flash[:message] = "You must be logged in to add a new book to your ReadingList."
-      redirect '/books'
+      redirect '/index'
     end
   end
 
@@ -22,7 +22,7 @@ class BooksController < ApplicationController
       erb :'/books/show'
     else
       flash[:message] = "You must be logged in to view this book."
-      redirect '/books'
+      redirect '/login'
     end
   end
 
@@ -51,7 +51,6 @@ class BooksController < ApplicationController
     @user = User.find_by(id: session[:user_id])
     @book = Book.find_by(id: params["id"])
     @book.update(title: params["title"], author: params["author"])
-
     flash[:message] = "Book sucessfully updated."
     redirect "/users/#{@user.id}"
   end
@@ -60,7 +59,6 @@ class BooksController < ApplicationController
     @user = User.find_by(id: session[:user_id])
     @book = Book.find_by(id: params["id"])
     @book.destroy
-
     flash[:message] = "Your book has been deleted."
     redirect "/users/#{@user.id}"
   end

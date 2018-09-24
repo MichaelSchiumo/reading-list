@@ -1,5 +1,5 @@
 <h1>New Book to Read:</h1>
-<p><a href="/books/<%=book.id%>"><%= book.title %> - <%= book.author %></a></p>
+<p><a href="/books/<%=@book.id%>"><%= @book.title %> - <%= @book.author %></a></p>
 <br>
 <a class="button" href="/books/<%= @book.id %>/edit">Edit Book</a><br>
   <form action="/books/<%=@book.id%>/delete" method="POST">

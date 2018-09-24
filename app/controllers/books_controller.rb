@@ -46,7 +46,8 @@ class BooksController < ApplicationController
       redirect '/books/new'
     else
       @user = User.find_by(id: session[:user_id])
-      @book = Book.find_or_create_by(title: params["title"], author: params["author"])
+      @book = Book.find_or_create_by(title: params["book"]["title"], author: params["book"]["author"])
+      binding.pry
       @book.save
       redirect "/books/#{@book.id}"
     end

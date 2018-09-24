@@ -1,8 +1,12 @@
 class BooksController < ApplicationController
   
   get '/books' do
-    @books = Book.all
-    erb :'/books/index'
+    if logged_in?
+      @books = Book.all
+      erb :'/books/index'
+    else 
+      redirect '/login'
+    end
   end
   
   get '/books/new' do
@@ -10,7 +14,7 @@ class BooksController < ApplicationController
     erb :'books/new'
     else
       flash[:message] = "You must be logged in to add a new book to your ReadingList."
-      redirect '/index'
+      redirect '/login'
     end
   end
 
@@ -43,7 +47,8 @@ class BooksController < ApplicationController
     else
       @user = User.find_by(id: session[:user_id])
       @book = Book.find_or_create_by(title: params["title"], author: params["author"])
-      redirect "/books/index"
+      @book.save
+      redirect "/books/#{@book.id}"
     end
   end
 

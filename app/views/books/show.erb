@@ -1,10 +1,10 @@
-<h1>Books to Read:</h1>
-<% @user.books.each do |book| %>
-  <ul>
-    <li><a href="/books/<%=book.id%>"><%= book.title %> - <%= book.author %></a></li>
-  </ul>
-<% end %>
+<h1>New Book to Read:</h1>
+<p><a href="/books/<%=book.id%>"><%= book.title %> - <%= book.author %></a></p>
 <br>
 <a class="button" href="/books/<%= @book.id %>/edit">Edit Book</a><br>
+  <form action="/books/<%=@book.id%>/delete" method="POST">
+    <input type="hidden" name="_method" value="delete">
+    <input class="button" type="submit" value="Delete Book">
+  </form>
 <a class="button" href="/books/index">Back to My ReadingList</a><br>
 <a class="button" href="/logout">Log Out</a>

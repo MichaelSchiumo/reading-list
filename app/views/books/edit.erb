@@ -1,6 +1,6 @@
 <h2>Edit Book Info</h2>
 <br>
-<form action="/books/<%=@book.id %>" method="POST">
+<form action="/books/<%=@book.id%>" method="POST">
   <label for="book_title">Title:</label><br>
   <input id="title" type="text" name="book[title]" value=<%= @book.title %>><br>
   <label for="book_author">Author:</label><br>
@@ -8,4 +8,4 @@
   <input type="submit" value="Update Book Info">
 </form>
 <br>
-<a class="button" href="/show">Back to My ReadingList</a>
+<a class="button" href="/show">Back to My ReadingList</a><br>

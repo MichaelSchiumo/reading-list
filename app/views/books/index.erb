@@ -3,9 +3,9 @@
 <h2>Here are the books on your ReadingList:</h2>
 <% @user.books.each do |book| %>
 <ul>
-  <li><a href="/books/<%=book.id%>"><%= book.name %> - <%= book.author %></a></li>
+  <li><a href="/books/<%=book.id%>"><%= book.title %> - <%= book.author %></a></li><br>
 </ul>
 <% end %>
 <br>
-<a href="/books/new">Add New Book</a>
+<a href="/books/new">Add New Book</a><br>
 <a href="/logout">Log Out</a>

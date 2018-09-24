@@ -37,15 +37,13 @@ class BooksController < ApplicationController
   end
 
   post '/books' do
-    if !params["author"].empty? && !params["title"].empty?
-      @user = User.find_by(id: session[:user_id])
-      @book = Book.find_or_create_by(title: params["title"], author: params["author"], topic_id: params["topic_id"], user_id: session[:user_id])
-
-      flash[:message] = "You just added a new bookto your ReadingList."
-      redirect "/users/#{@user.id}"
-    else
+    if params[:title] == "" || params[:author_name] == ""
       flash[:message] = "Please fill in all required fields."
       redirect '/books/new'
+    else
+      @user = User.find_by(id: session[:user_id])
+      @book = Book.find_or_create_by(title: params["title"], author: params["author"])
+      redirect "/books/index"
     end
   end
 

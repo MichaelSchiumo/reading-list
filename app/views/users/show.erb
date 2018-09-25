@@ -3,7 +3,7 @@
 <h3>Books to Read: </h3>
 <% @user.books.each do |book| %>
   <ul>
-    <li><a href="/books/<%=book.id%>"><%= book.title %> - <%= book.author %></a></li>
+    <li><a href="/books/<%=@book.id%>"><%= @book.title %> - <%= @book.author %></a></li>
   </ul>
 <% end %>
 <br>

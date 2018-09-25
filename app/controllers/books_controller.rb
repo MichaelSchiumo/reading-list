@@ -22,7 +22,6 @@ class BooksController < ApplicationController
     if logged_in?
       @user = User.find_by(id: session[:user_id])
       @book = Book.find_by(id: params["id"])
-
       erb :'/books/show'
     else
       flash[:message] = "You must be logged in to view this book."
@@ -36,7 +35,7 @@ class BooksController < ApplicationController
       erb :'/books/edit'
     else
       flash[:message] = "You must be logged in to edit your ReadingList."
-      redirect '/books'
+      redirect '/login'
     end
   end
 

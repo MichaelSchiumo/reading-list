@@ -1,12 +1,11 @@
 <h1>My ReadingList</h1>
 <p> Here is your ReadingList, <%= @user.username %></p>
 <h3>Books to Read: </h3>
-<% @user.books.each do |book| %>
+<% current_user.books.each do |book| %>
   <ul>
-    <li><a href="/books/<%=@book.id%>"><%= @book.title %> - <%= @book.author %></a></li>
+    <li><a href="/books/<%=book.id%>"><%= book.title %> - <%= book.author %></a></li>
   </ul>
 <% end %>
 <br>
-<%# User should be able to click on a book and create/read/update/destroy their own comment %>
 <a href="/books/new">Add New Book</a><br>
 <a href="/logout">Log Out</a>

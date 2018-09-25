@@ -5,4 +5,4 @@ class CreateBooks < ActiveRecord::Migration
       t.string :author
     end
   end
-end
+ end 

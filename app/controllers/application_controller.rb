@@ -13,7 +13,7 @@ class ApplicationController < Sinatra::Base
   get '/' do
     erb :index
   end
-  
+
   #   if logged_in?
   #     redirect "/users/#{session[:user_id]}"
   #   else
@@ -22,17 +22,16 @@ class ApplicationController < Sinatra::Base
   # end
 
   helpers do
+
     def current_user
-      @user = User.find_by(id: session[:user_id])
+      @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+      # @user = User.find_by(id: session[:user_id])
     end
 
     def logged_in?
       !!current_user
     end
 
-    def logout
-      session.clear
-    end
   end
 
 end

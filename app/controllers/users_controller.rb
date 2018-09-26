@@ -20,13 +20,15 @@ class UsersController < ApplicationController
   post '/signup' do
     if params[:username] == "" || params[:email] == "" || params[:password] == ""
       redirect to '/signup'
+    elsif User.all.detect {|user| user.username == params[:username]}
+      flash[:message] = "This username already exsists. Please try again."
+      redirect to '/signup'
     else
       @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
       @user.save
       session[:user_id] = @user.id
       flash[:message] = "You have successfully created a My ReadingList account."
       redirect to '/books' 
-      # /books is showing books from other users
     end
   end
 

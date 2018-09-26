@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     if params[:username] == "" || params[:email] == "" || params[:password] == ""
       redirect to '/signup'
     elsif User.all.detect {|user| user.username == params[:username]}
-      flash[:message] = "This username already exsists. Please try again."
+      flash[:message] = "This username already exists. Please try again."
       redirect to '/signup'
     else
       @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])

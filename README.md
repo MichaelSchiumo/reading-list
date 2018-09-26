@@ -8,7 +8,7 @@ To download this app, git clone: https://github.com/vickicello/reading-list.git
 
 Run bundle install and run shotgun in your terminal to get the app running on your local server.
 
-##Usage:
+## Usage:
 
 Create a username and password and create your very own ReadingList.
 

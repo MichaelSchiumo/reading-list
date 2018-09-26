@@ -4,14 +4,15 @@ class BooksController < ApplicationController
     if logged_in?
       @books = Book.all
       erb :'/books/books'
-    else 
+    else
+      flash[:message] = "You must login to view this page."
       redirect to '/login'
     end
   end
   
   get '/books/new' do
     if logged_in?
-    erb :'books/new'
+    erb :'/books/new'
     else
       flash[:message] = "You must be logged in to add a new book to your ReadingList."
       redirect to '/login'
@@ -24,9 +25,12 @@ class BooksController < ApplicationController
         flash[:message] = "Please fill in all required fields."
         redirect to '/books/new'
       else
-        @book = current_user.books.build(title: params[:title], author: params[:author])
+        @user = current_user
+        @book = Book.create(title: params["book"]["title"], author: params["book"]["author"], user_id: session[:user_id])
         if @book.save
-          redirect to '/books/#{@book.id}'
+          @user.books << @book
+          redirect to '/books'
+          # redirect to '/books/#{@book.id}' ???????
         else
           redirect to '/books/new'
         end
@@ -64,13 +68,16 @@ class BooksController < ApplicationController
     if logged_in?
       if params["book"]["title"] == "" || params["book"]["author"] == ""
         redirect to '/books/#{@book.id}/edit'
+        # redirect to books/edit above???
         # redirect to "/books/#{params[:id]}/edit" ?????
       else
         @book = Book.find_by(id: params[:id])
         if @book && @book.user == current_user
-          if @book.update(title: params["title"], author: params["author"])
+          if @book.update(title: params["book"]["title"], author: params["book"]["author"])
             flash[:message] = "Book sucessfully updated."
-            redirect to '/books/#{@book.id}'
+            redirect to '/books'
+            # redirect to '/books/#{@book.id}'
+            # '/books/current_user.book'
           else
             redirect to '/books/#{@book.id}/edit'
           end
@@ -87,7 +94,7 @@ class BooksController < ApplicationController
     if logged_in?
       @book = Book.find_by(id: params["id"])
       if @book && @book.user == current_user
-        @book.delete
+        @book.destroy
       end
       flash[:message] = "Your book has been deleted."
       redirect to '/books'

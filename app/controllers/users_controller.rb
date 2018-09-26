@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   get '/users/:id' do
     if logged_in?
       @user = User.find_by(id: session[:user_id])
-      erb :'users/show'
+      erb :'/users/show'
     else
       redirect to '/login'
     end
@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   
   get '/signup' do
     if !logged_in?
-      erb :'users/signup'
+      erb :'/users/signup'
     else
       redirect to '/books'
     end
@@ -25,13 +25,14 @@ class UsersController < ApplicationController
       @user.save
       session[:user_id] = @user.id
       flash[:message] = "You have successfully created a My ReadingList account."
-      redirect to '/books'
+      redirect to '/books' 
+      # /books is showing books from other users
     end
   end
 
   get '/login' do
     if !logged_in?
-      erb :'users/login'
+      erb :'/users/login'
     else
       redirect to '/books'
     end
@@ -43,7 +44,7 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect to '/books'
     else
-      redirect to '/signup'
+      redirect to '/login'
     end
   end
 

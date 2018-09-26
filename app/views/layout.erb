@@ -12,7 +12,10 @@
   </head>
   <body>
     <div class="wrapper">
+    <br>
         <%= yield %>
+        <br>
+        <br>
       <% if flash.has?(:message) %>
         <%= flash[:message] %>
       <% end %>

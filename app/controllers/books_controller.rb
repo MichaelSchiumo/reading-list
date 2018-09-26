@@ -67,24 +67,18 @@ class BooksController < ApplicationController
   patch '/books/:id' do
     if logged_in?
       if params["book"]["title"] == "" || params["book"]["author"] == ""
-        redirect to '/books/#{@book.id}/edit'
-        # redirect to books/edit above???
-        # redirect to "/books/#{params[:id]}/edit" ?????
+        redirect to '/books/:id/edit'
       else
         @book = Book.find_by(id: params[:id])
         if @book && @book.user == current_user
           if @book.update(title: params["book"]["title"], author: params["book"]["author"])
             flash[:message] = "Book sucessfully updated."
             redirect to '/books'
-            # redirect to '/books/#{@book.id}'
-            # '/books/current_user.book'
-          else
-            redirect to '/books/#{@book.id}/edit'
           end
-        else
-          redirect to '/books'
-        end
-      end
+          else
+            redirect to '/books'
+          end
+        end           
     else
       redirect to '/login'
     end

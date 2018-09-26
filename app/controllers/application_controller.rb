@@ -14,13 +14,6 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
-  #   if logged_in?
-  #     redirect "/users/#{session[:user_id]}"
-  #   else
-  #     erb :index
-  #   end
-  # end
-
   helpers do
 
     def current_user

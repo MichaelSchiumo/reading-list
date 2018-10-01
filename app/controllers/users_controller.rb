@@ -1,12 +1,9 @@
 class UsersController < ApplicationController 
   
   get '/users/:id' do
-    if logged_in?
-      @user = User.find_by(id: session[:user_id])
-      erb :'/users/show'
-    else
-      redirect to '/login'
-    end
+    redirect_if_not_logged_in
+    @user = User.find_by(id: session[:user_id])
+    erb :'/users/show'
   end
   
   get '/signup' do

@@ -8,7 +8,6 @@
   <input type="text" name="book[author]" value="<%= @book.author %>"><br>
   <input type="submit" value="Update Book Info">
 </form>
-<%# make sure lines 3 and 4 are going to the correct place %>
 <br>
 <br>
   <form action="/books/<%=@book.id%>/delete" method="POST">

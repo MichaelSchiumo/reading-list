@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   post '/signup' do
     if params[:username] == "" || params[:email] == "" || params[:password] == ""
       redirect to '/signup'
-    elsif User.all.find {|user| user.username == params[:username]}
+    elsif User.all.find {|user| user.username == params[:username]}    # elsif User.all.detect {|user| user.username == params[:username]}
       flash[:message] = "This username already exists. Please try again."
       redirect to '/signup'
     elsif User.all.find {|user| user.email == params[:email]}
